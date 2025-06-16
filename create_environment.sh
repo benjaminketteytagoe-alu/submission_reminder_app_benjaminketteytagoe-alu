@@ -20,6 +20,8 @@ mkdir -p "$sub_dir/app" "$sub_dir/modules" "$sub_dir/assets" "$sub_dir/config"
 #This creates the files in their respective directories
 #Creating the file for the app directory
 touch "$sub_dir/app/reminder.sh" "$sub_dir/modules/functions.sh" "$sub_dir/assets/submissions.txt" "$sub_dir/config/config.env"
+#Make the scripts executable
+chmod +x "$sub_dir/app/reminder.sh" "$sub_dir/modules/functions.sh"
 #Creating the startup script for the reminder app
 #!/bin/bash
 cat << EOF > "$sub_dir/app/startup.sh"

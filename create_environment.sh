@@ -22,7 +22,7 @@ mkdir -p "$sub_dir/app" "$sub_dir/modules" "$sub_dir/assets" "$sub_dir/config"
 touch "$sub_dir/app/reminder.sh" "$sub_dir/modules/functions.sh" "$sub_dir/assets/submissions.txt" "$sub_dir/config/config.env"
 #Populate the various files with their respective content
 #for the reminder.sh
-cat << EOF >> "$sub_dir/app/reminder.sh"
+cat << 'EOF' >> "$sub_dir/app/reminder.sh"
 #!/bin/bash
 
 # Source environment variables and helper functions
@@ -40,7 +40,7 @@ echo "--------------------------------------------"
 check_submissions $submissions_file
 EOF
 #for the functions.sh
-cat << EOF >> "$sub_dir/modules/functions.sh"
+cat << 'EOF' >> "$sub_dir/modules/functions.sh"
 #!/bin/bash
 
 # Function to read submissions file and output students who have not submitted
@@ -63,7 +63,7 @@ function check_submissions {
 }
 EOF
 #For the config.env
-cat << EOF >> "$sub_dir/config/config.env"
+cat << 'EOF' >> "$sub_dir/config/config.env"
 #This is the config file
 ASSIGNMENT="Shell Navigation"
 DAYS_REMAINING=2
@@ -85,12 +85,9 @@ EOF
 #Make the scripts executable
 chmod +x "$sub_dir/app/reminder.sh" "$sub_dir/modules/functions.sh"
 #Creating the startup script for the reminder app
+cat << EOF >> "$sub_dir/startup.sh"
 #!/bin/bash
-cat << EOF > "$sub_dir/startup.sh"
-base_dir="$(dir "$0")/.."
-source "$base_dir "$0"/config/config.env"
-source "$base_dir "$0"/modules/functions.sh"
-bash "$base_dir "$0"/app/reminder.sh"
+./app/reminder.sh
 EOF
 # Make startup.sh executable
 chmod +x "$sub_dir/startup.sh"
